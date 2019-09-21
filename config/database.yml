@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  #We should put username and password inside the .env file
+  #But this is just a demo
+  username: rails
+  password: rails
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: mapping_development
+
+test:
+  <<: *default
+  database: mapping_test
+
+production:
+  <<: *default
+  database: mapping_production
