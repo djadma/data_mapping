@@ -34,6 +34,14 @@ class Api::QuestionsController < ApplicationController
     render json: { message: "record not found" }
   end
 
+  def destroy
+    question = Question.find(params[:id])
+    question.destroy
+    render :json=> {
+      questions: ActiveModel::Serializer::CollectionSerializer.new(questions = Question.all, each_serializer: QuestionSerializer)
+    }
+  end
+
   private
 
   def question_params
